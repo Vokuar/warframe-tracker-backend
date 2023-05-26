@@ -22,4 +22,4 @@ jobs:
         run: npm install
 
       - name: Run web scraping script
-        run: node warframeScraper.js
+        run: node src/warframeScraper.js
