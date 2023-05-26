@@ -1,10 +1,10 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-const warframesUrl = 'https://warframe.fandom.com/wiki/Warframes';
-
-axios.get(warframesUrl)
-  .then(response => {
+const scrapeWarframes = async () => {
+  try {
+    const warframesUrl = 'https://warframe.fandom.com/wiki/Warframes';
+    const response = await axios.get(warframesUrl);
     const html = response.data;
     const $ = cheerio.load(html);
 
@@ -16,8 +16,13 @@ axios.get(warframesUrl)
       warframeNames.push(name);
     });
 
-    console.log(warframeNames);
-  })
-  .catch(error => {
+    return warframeNames;
+  } catch (error) {
     console.log('Error retrieving warframe data:', error);
-  });
+    return [];
+  }
+};
+
+module.exports = {
+  scrapeWarframes
+};
