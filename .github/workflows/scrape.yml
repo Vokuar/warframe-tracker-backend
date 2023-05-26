@@ -1,0 +1,17 @@
+name: Scrape
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Run the scraper
+      run: node src/warframeScraper.js
